@@ -1,0 +1,38 @@
+@import 'tailwindcss';
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Bottom padding for mobile tab bar */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 4rem;
+  }
+}
+
+#root {
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: rgba(180, 145, 90, 0.2);
+  color: #2c1a0e;
+}
