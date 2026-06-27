@@ -51,10 +51,6 @@ const testimonials = [
   },
 ];
 
-const brandWords = [
-  "Handcrafted", "Diamond", "Luxury", "Heritage", "Elegance",
-  "Artisan", "Prestige", "Timeless", "Brilliance", "Mastery",
-];
 
 export default function Home() {
   const { onAddToCart, onShowProductModal, toggleSaved, isSaved } = useCart();
@@ -76,7 +72,7 @@ export default function Home() {
   const statsRef = useRef(null);
   const ctaRef = useRef(null);
   const testimonialRef = useRef(null);
-  const marqueeRef = useRef(null);
+
 
   const hScrollInView = useInView(hScrollRef, { once: true, margin: "-80px" });
   const detailInView = useInView(detailRef, { once: true, margin: "-80px" });
@@ -125,37 +121,6 @@ export default function Home() {
         </motion.div>
       </div>
 
-      {/* ── BRAND MARQUEE RIBBON ── */}
-      <section
-        ref={marqueeRef}
-        className="relative w-full overflow-hidden py-4 sm:py-5"
-        style={{
-          backgroundColor: "#1a120b",
-          borderTop: "1px solid rgba(180,145,90,0.15)",
-          borderBottom: "1px solid rgba(180,145,90,0.15)",
-        }}
-      >
-        <div className="flex whitespace-nowrap">
-          <motion.div
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            className="flex items-center gap-6 sm:gap-10"
-          >
-            {[...brandWords, ...brandWords].map((word, i) => (
-              <span key={i} className="flex items-center gap-6 sm:gap-10">
-                <span
-                  className="font-['Marcellus'] text-sm sm:text-base md:text-lg tracking-wide"
-                  style={{ color: "rgba(180,145,90,0.35)" }}
-                >
-                  {word}
-                </span>
-                <Diamond size={8} style={{ color: "rgba(180,145,90,0.2)" }} />
-              </span>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       {/* ── H-SCROLL — Season's Highlights (Dark Cards) ── */}
       <section ref={hScrollRef} className="relative w-full overflow-hidden" style={{ backgroundColor: "#fffcf7" }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14 sm:py-20 md:py-28">
@@ -196,7 +161,10 @@ export default function Home() {
                 className="flex-shrink-0 group"
                 style={{ scrollSnapAlign: "start", width: "min(72vw, 300px)" }}
               >
-                <Link to={`/product/${item.id}`} className="block">
+                <button
+                  onClick={() => onShowProductModal(item)}
+                  className="block text-left w-full"
+                >
                   <div
                     className="relative rounded-2xl overflow-hidden transition-all duration-500 group-hover:-translate-y-2"
                     style={{
@@ -269,7 +237,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                </Link>
+                </button>
               </motion.div>
             ))}
           </div>
