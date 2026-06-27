@@ -5,11 +5,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   plugins: [
-    react({
-      babel: {
-        plugins: ["./babel-plugin-imagine-loc.cjs"],
-      },
-    }),
+    react(),
     tailwindcss(),
     tsconfigPaths(),
   ],
